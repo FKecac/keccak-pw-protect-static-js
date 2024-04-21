@@ -2,9 +2,9 @@
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
 
-# Keccak based Password Protection for Static Sites
+# Keccak based Password + Username Protection for Static Sites
 
-The functions of ```keccak.js ``` can be used to 
+The functions of ```keccak.js ``` can be used to create Password + Username Protected Static Sites, such as e.g. Github Pages/ Ionos Deploy Now sites where e.g. .htaccess might not be an option, especially if you cannot access any server configs.
 
 
 ## Installation
@@ -13,22 +13,40 @@ The functions of ```keccak.js ``` can be used to
 2. Add ```<script src="yourlocation/keccack.js" ></script>``` to the html document.
 ## Usage
 1. Follow Installation
-2. ```(recommended)``` Simply call the function generateSecureURL() using jQuery (see example).
+2. Create Uername/ Password folder structures (see below under ```'Add Users'```)
+3. ```(recommended)``` Simply call the function generateSecureURL() using jQuery (see example).
 
-  
 OR
 
-2. Use the function in your own .js document.
-4. Use the generated URL to navigate to the fitting document.
+3. Use the function in your own .js document.
+4. e.g. Use the generated URL to navigate to the fitting document/ URL.
+
+## Add Users
+#### Example:
+To generate a User with the Username ```'Test'``` and the Password ```'cat1234'```:  
+1. Use the function ```generateSecureURL('UP', 'Test', 'cat1234', '', 'https://test.com')```
+2. Check the developer console: (e.g. "Generated URL: https://test.com/3f0b699d/9058ae25e052bd/") The last part will be your folder structure. Username Hash: ```'3f0b699d'``` Password Hash: ```'9058ae25e052bd'```  
+3. Add the folders in the correct structure  
+(```Depending on the option you will use, in this case the structure is 'UP' or 'UPG'```):
+```
+- login.html             <-- whatever your html document with e.g. the login form is called
+- keccak.js              <-- example location
+- 3f0b699d               <-- folder, the hash of your username               
+- | 9058ae25e052bd       <-- folder, the hash of your Password
+- | | index.html         <-- e.g. the now protected index.html
+```
 
 ## Parameters:
 ```generateSecureURL(option, username, password, goalDocument, baseUrl)```
 
 #### option (```required```): 
-Which structure the generated URL should follow.
+Which structure the generated URL should follow.  
+U - stands for username, P - stands for password, G - stands for goalDocument
 ```javascript
 'UPG' = 'baseUrl/hashedUsername/hashedPassword/goalDocument'
 'PUG' = 'baseUrl/hashedPassword/hashedUsername/goalDocument'
+'UP' = 'baseUrl/hashedUsername/hashedPassword/'
+'PU' = 'baseUrl/hashedPassword/hashedUsername/'
 'PG' = 'baseUrl/hashedPassword/goalDocument'
 'UG' = 'baseUrl/hashedUsername/goalDocument'
 'U' = 'baseUrl/hashedUsername/' e.g. can be used if static site defaults to index.html
