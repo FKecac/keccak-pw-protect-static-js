@@ -7,6 +7,11 @@
 The functions of ```keccak.js ``` can be used to create Password + Username Protected Static Sites, such as e.g. Github Pages/ Ionos Deploy Now sites where e.g. .htaccess might not be an option, especially if you cannot access any server configs.
 
 
+## **Important Pre-Usage Info**
+**1. This does not hide any data if directory listing is activated.**  
+**2. The Password and/ Username will be visible in the Website-Visitors History.**  
+**3. Certain browser versions ( such as e.g. pre-Mozilla69, see [CVE-2019-11730 URIs SOP Bypass](https://bugzilla.mozilla.org/show_bug.cgi?id=1558299&_gl=1*o0kxm2*_ga*MTkwODQzMjgwMS4xNzEzNjIzMzMw*_ga_MQ7767QQQW*MTcxMzcyNTUzMS4xLjEuMTcxMzcyNTg0NS4wLjAuMA..) ) may leak other files in the same directory, allowing an effective bypass.**
+**4. It is theoretically bruteforceable by creating a bot that checks every url combination.**
 ## Installation
 
 1. Simply download keccak.js and add it to your static sites directory (or wherever you have your other .js documents stored)  
