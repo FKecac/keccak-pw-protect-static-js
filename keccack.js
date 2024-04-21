@@ -56,7 +56,7 @@ function generateSecureURL(option, username, password, goalDocument, baseUrl) {
 
     // Hash the username and password
     const hashedUsername = username ? kecac_min(username) : '';
-    const hashedPassword = kecac_min(password);
+    const hashedPassword = password ? kecac_min(password): '';
 
     // Construct URL
     let url;
@@ -66,6 +66,12 @@ function generateSecureURL(option, username, password, goalDocument, baseUrl) {
             break;
 		case 'PUG':
             url = `${baseUrl}/${hashedPassword}/${hashedUsername}/${goalDocument}`;
+            break;
+        case 'UP':
+            url = `${baseUrl}/${hashedUsername}/${hashedPassword}/`;
+            break;
+        case 'PU':
+            url = `${baseUrl}/${hashedPassword}/${hashedUsername}/`;
             break;
         case 'PG':
             url = `${baseUrl}/${hashedPassword}/${goalDocument}`;
